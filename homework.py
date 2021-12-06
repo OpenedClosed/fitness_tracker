@@ -136,9 +136,10 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    conform_dict = {'SWM': Swimming,
-       'RUN': Running,
-       'WLK': SportsWalking,
+    conform_dict = {
+        'SWM': Swimming,
+        'RUN': Running,
+        'WLK': SportsWalking,
         }
     object_: Training = conform_dict[workout_type](*data)
     return object_
