@@ -74,7 +74,7 @@ class Running(Training):
         coeff_cal_2: int = 20
         dur_in_min: float = self.duration * 60
         calories: float = ((coeff_cal_1 * self.get_mean_speed() - coeff_cal_2)
-                          * self.weight / self.M_IN_KM * dur_in_min)
+                           * self.weight / self.M_IN_KM * dur_in_min)
         return calories
 
 
@@ -95,9 +95,9 @@ class SportsWalking(Training):
         coeff_cal_1: float = 0.035
         coeff_cal_2: float = 0.029
         dur_in_min: float = self.duration * 60
-        calories: float = ((coeff_cal_1 * self.weight +
-                           (self.get_mean_speed()**2 // self.height)
-                          * coeff_cal_2 * self.weight) * dur_in_min)
+        calories: float = ((coeff_cal_1 * self.weight
+                           + (self.get_mean_speed()**2 // self.height)
+                           * coeff_cal_2 * self.weight) * dur_in_min)
         return calories
 
 
@@ -119,14 +119,16 @@ class Swimming(Training):
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
-        mean_spead = self.length_pool * self.count_pool / self.M_IN_KM / self.duration
+        mean_spead = (self.length_pool * self.count_pool
+                      / self.M_IN_KM / self.duration)
         return mean_spead
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         coeff_cal_1: float = 1.1
         coeff_cal_2: float = 2
-        calories: float = (self.get_mean_speed() + coeff_cal_1) * coeff_cal_2 * self.weight
+        calories: float = ((self.get_mean_speed() + coeff_cal_1)
+                           * coeff_cal_2 * self.weight)
         return calories
 
 
@@ -136,9 +138,10 @@ def read_package(workout_type: str, data: list) -> Training:
        'SWM': Swimming,
        'RUN': Running,
        'WLK': SportsWalking,
-    }
+       }
     object_: Training = conform_dict[workout_type](*data)
     return object_
+
 
 def main(training: Training) -> None:
     """Главная функция."""
