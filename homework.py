@@ -15,7 +15,6 @@ class InfoMessage:
         self.speed = speed
         self.calories = calories
 
-
     def get_message(self) -> str:
         """Сообщение о тренировке."""
         info_message = (f'Тип тренировки: {self.training_type}; '
@@ -42,22 +41,18 @@ class Training:
         self.duration = duration
         self.weight = weight
 
-
     def get_distance(self) -> float:
         """Получить дистанцию в км."""
         dist_in_km = self.action * self.LEN_STEP / self.M_IN_KM
         return dist_in_km
-
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
         mean_spead = self.get_distance() / self.duration
         return mean_spead
 
-
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
@@ -95,13 +90,13 @@ class SportsWalking(Training):
         super().__init__(action, duration, weight)
         self.height = height
 
-
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         coeff_cal_1: float = 0.035
         coeff_cal_2: float = 0.029
         dur_in_min: float = self.duration * 60
-        calories: float = ((coeff_cal_1 * self.weight + (self.get_mean_speed()**2 // self.height)
+        calories: float = ((coeff_cal_1 * self.weight +
+                           (self.get_mean_speed()**2 // self.height)
                           * coeff_cal_2 * self.weight) * dur_in_min)
         return calories
 
@@ -122,12 +117,10 @@ class Swimming(Training):
         self.length_pool = length_pool
         self.count_pool = count_pool
 
-
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
         mean_spead = self.length_pool * self.count_pool / self.M_IN_KM / self.duration
         return mean_spead
-
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
@@ -146,7 +139,6 @@ def read_package(workout_type: str, data: list) -> Training:
     }
     object_: Training = conform_dict[workout_type](*data)
     return object_
-
 
 def main(training: Training) -> None:
     """Главная функция."""
