@@ -21,11 +21,11 @@ class InfoMessage:
 
     def get_message(self) -> str:
         """Сообщение о тренировке."""
-        info_ = self.info_message.format(training_type = self.training_type,
-                                         duration = self.duration,
-                                         distance = self.distance,
-                                         speed = self.speed,
-                                         calories = self.calories
+        info_ = self.info_message.format(training_type=self.training_type,
+                                         duration=self.duration,
+                                         distance=self.distance,
+                                         speed=self.speed,
+                                         calories=self.calories
                                          )
         return info_
 
@@ -79,7 +79,8 @@ class Running(Training):
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         dur_in_min: float = self.duration_h * self.H_IN_MIN
-        calories: float = ((self.COEFF_CAL_1 * self.get_mean_speed() - self.COEFF_CAL_2)
+        calories: float = ((self.COEFF_CAL_1 * self.get_mean_speed()
+                           - self.COEFF_CAL_2)
                            * self.weight / self.M_IN_KM * dur_in_min)
         return calories
 
